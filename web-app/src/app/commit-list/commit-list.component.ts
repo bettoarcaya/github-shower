@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommitListService } from './commit-list.service';
 
 @Component({
   selector: 'app-commit-list',
@@ -6,18 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./commit-list.component.css']
 })
 export class CommitListComponent implements OnInit {
-  commitList: Array<string> = [];
+  commitList: any = [];
 
-  constructor() { }
+  constructor(private commitListService: CommitListService) { }
 
   ngOnInit(): void {
     this.getCommitList();
   }
 
   getCommitList() {
-    this.commitList = [
-      "one", "two", "three"
-    ];
+    this.commitList = this.commitListService.getAllCommit();
   }
 
 }
