@@ -1,5 +1,5 @@
 # Title of the project
-Github commit list
+Github commit list API
 
 ## Description
 this project shows git commit history on the same project you are working on.
