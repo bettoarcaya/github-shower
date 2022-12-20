@@ -7,7 +7,12 @@ import { CommitListService } from './commit-list.service';
   styleUrls: ['./commit-list.component.css']
 })
 export class CommitListComponent implements OnInit {
-  commitList: any = [];
+  commitList: Array<{
+    avatar: string,
+    message: string,
+    author: string,
+    date: string
+  }> = [];
 
   constructor(private commitListService: CommitListService) { }
 
@@ -15,8 +20,14 @@ export class CommitListComponent implements OnInit {
     this.getCommitList();
   }
 
-  getCommitList() {
-    this.commitList = this.commitListService.getAllCommit();
+  getCommitList(): void {
+    this.commitListService
+        .getAllCommit()
+        .subscribe({
+          next: (res: any) => {
+            this.commitList = res;
+          }
+        });
   }
 
 }

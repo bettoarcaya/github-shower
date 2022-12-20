@@ -1,57 +1,14 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommitListService {
-
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getAllCommit() {
-    return [
-      {
-        'date': '20/11/2022',
-        'commits': [
-          {
-            'author': 'Humberto Arcaya',
-            'message': 'text message example'
-          },
-          {
-            'author': 'Humberto Arcaya',
-            'message': 'text message example 2'
-          },
-          {
-            'author': 'Humberto Arcaya',
-            'message': 'very very long text message example 2'
-          },
-          {
-            'author': 'Humberto Arcaya',
-            'message': 'very very very very very long text message example 2'
-          }
-        ]
-      },
-      {
-        'date': '19/11/2022',
-        'commits': [
-          {
-            'author': 'Humberto Arcaya',
-            'message': 'text message example'
-          },
-          {
-            'author': 'Humberto Arcaya',
-            'message': 'very very very very very long text message example 2'
-          }
-        ]
-      },
-      {
-        'date': '18/11/2022',
-        'commits': [
-          {
-            'author': 'Humberto Arcaya',
-            'message': 'text message example'
-          }
-        ]
-      }
-    ];
+    return this.http.get('http://localhost:3000/');
   }
 }
