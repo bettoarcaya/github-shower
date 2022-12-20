@@ -10,13 +10,21 @@ export class AppService {
   }
 
   async getCommitsFromRepo() {
-    const ghResponse = await this.octokit.request(
+    const { data } = await this.octokit.request(
       'GET /repos/{owner}/{repo}/commits{?sha,path,author,since,until,per_page,page}',
       {
         owner: 'bettoarcaya',
         repo: 'github-shower',
       },
     );
-    return ghResponse;
+
+    return data.map((info) => {
+      return {
+        avatar: info.author.avatar_url,
+        author: info.commit.author.name,
+        message: info.commit.message,
+        date: info.commit.author.date,
+      };
+    });
   }
 }
